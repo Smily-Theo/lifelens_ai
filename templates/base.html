@@ -33,7 +33,8 @@
   {% if messages %}<div class="toast-stack">{% for cat,msg in messages %}<div class="toast {{cat}}">{{msg}}</div>{% endfor %}</div>{% endif %}
 {% endwith %}
 <main>{% block content %}{% endblock %}</main>
-<footer class="footer"><div><b>LifeLens AI</b><span> Civic intelligence for Dindigul.</span></div><div>Currently available in <b>Dindigul, Tamil Nadu</b> · More cities coming soon.</div></footer>
+<footer class="footer"><div><b>LifeLens AI</b><span> Civic intelligence for Dindigul.</span></div><div>Currently available in <b>Dindigul, Tamil Nadu</b> · More cities coming soon.
+Designed & Developed By</b> Theo</b></div></footer>
 <script>window.LIFELENS={center:{{dindigul_center|tojson}},googleKey:{{google_maps_key|tojson}}};</script>
 <script src="{{ url_for('static',filename='js/app.js') }}"></script>
 {% block scripts %}{% endblock %}
