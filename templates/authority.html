@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}Authority Dashboard — LifeLens AI{% endblock %}
+{% block content %}
+<section class="page-head"><div><div class="eyebrow">PROTECTED AUTHORITY CONSOLE</div><h1>City operations</h1><p>Prioritize, verify and track Dindigul incidents.</p></div><span class="badge">AI-assisted · Dindigul</span></section>
+<div id="authStats" class="stats-grid"></div>
+<div class="dashboard-grid"><div class="table-card"><div class="table-head"><h2>Priority incidents</h2><button class="btn btn-sm ghost" onclick="loadAuthority()">Refresh</button></div><table><thead><tr><th>Incident</th><th>Category</th><th>Severity</th><th>Priority</th><th>Status</th></tr></thead><tbody id="incidentRows"></tbody></table></div>
+<div class="card"><h2>Analytics</h2><canvas id="categoryChart" height="230"></canvas><div id="prediction" class="prediction"></div></div></div>
+<div class="card"><h2>Dindigul issue heatmap</h2><div id="authorityMap" class="authority-map"></div></div>
+{% endblock %}
+{% block scripts %}<script src="https://cdn.jsdelivr.net/npm/chart.js"></script><script>initAuthority();</script>{% endblock %}

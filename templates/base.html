@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}LifeLens AI{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static',filename='css/app.css') }}">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="{{ url_for('home') }}"><span class="brand-dot">L</span><span>LifeLens <b>AI</b></span></a>
+  <nav class="desktop-nav">
+    <a href="{{ url_for('public_map') }}">Explore Dindigul</a>
+    <a href="{{ url_for('leaderboard') }}">Leaderboard</a>
+    {% if user and user['role'] in ['authority','admin'] %}<a href="{{ url_for('authority') }}">Authority</a>{% endif %}
+    {% if user and user['role']=='admin' %}<a href="{{ url_for('admin') }}">Admin</a>{% endif %}
+  </nav>
+  <div class="nav-actions">
+    {% if user %}
+      <a class="nav-link" href="{{ url_for('profile') }}">{{ user['name'] }}</a>
+      <a class="btn btn-sm" href="{{ url_for('report') }}">Report Issue</a>
+      <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+      <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+      <a class="btn btn-sm" href="{{ url_for('register') }}">Get Started</a>
+    {% endif %}
+  </div>
+</header>
+{% with messages=get_flashed_messages(with_categories=true) %}
+  {% if messages %}<div class="toast-stack">{% for cat,msg in messages %}<div class="toast {{cat}}">{{msg}}</div>{% endfor %}</div>{% endif %}
+{% endwith %}
+<main>{% block content %}{% endblock %}</main>
+<footer class="footer"><div><b>LifeLens AI</b><span> Civic intelligence for Dindigul.</span></div><div>Currently available in <b>Dindigul, Tamil Nadu</b> · More cities coming soon.</div></footer>
+<script>window.LIFELENS={center:{{dindigul_center|tojson}},googleKey:{{google_maps_key|tojson}}};</script>
+<script src="{{ url_for('static',filename='js/app.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body></html>

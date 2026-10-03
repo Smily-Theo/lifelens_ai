@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block title %}{{'Login' if mode=='login' else 'Create Account'}} — LifeLens AI{% endblock %}
+{% block content %}<section class="auth-page"><div class="auth-card"><div class="eyebrow">LIFELENS AI</div><h1>{{'Welcome back' if mode=='login' else 'Create your account'}}</h1><p>{{'Login to report a civic issue.' if mode=='login' else 'Citizen accounts are required only for submitting reports.'}}</p>
+<form method="post" class="form-grid">
+{% if mode=='register' %}<label>Full name<input name="name" required minlength="2" placeholder="Your name"></label>{% endif %}
+<label>Email<input type="email" name="email" required placeholder="you@example.com"></label>
+<label>Password<input type="password" name="password" required minlength="8" placeholder="8+ characters"></label>
+<button class="btn btn-lg" type="submit">{{'Login' if mode=='login' else 'Create account'}}</button>
+</form>
+<div class="auth-demo"><b>Hackathon demo accounts</b><span>Citizen: citizen@lifelens.local / Citizen@123</span><span>Authority: authority@lifelens.local / Authority@123</span><span>Admin: admin@lifelens.local / Admin@123</span></div>
+<p class="switch">{{'New here?' if mode=='login' else 'Already have an account?'}} <a href="{{url_for('register' if mode=='login' else 'login')}}"> {{'Create an account' if mode=='login' else 'Login'}}</a></p>
+</div></section>{% endblock %}

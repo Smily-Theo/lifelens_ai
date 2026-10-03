@@ -1,0 +1,3 @@
+{% extends "base.html" %}{% block title %}Leaderboard — LifeLens AI{% endblock %}
+{% block content %}<section class="page-head"><div><div class="eyebrow">COMMUNITY IMPACT</div><h1>Citizen leaderboard</h1><p>Points reflect verified civic contributions in the demo platform.</p></div></section>
+<div class="table-card"><table><thead><tr><th>Rank</th><th>Citizen</th><th>Points</th><th>Badge</th></tr></thead><tbody>{% for r in rows %}<tr><td><b>#{{loop.index}}</b></td><td>{{r['name']}}</td><td><span class="score">{{r['points']}}</span></td><td>🏅 Community contributor</td></tr>{% else %}<tr><td colspan="4" class="empty">No public profiles yet.</td></tr>{% endfor %}</tbody></table></div>{% endblock %}
